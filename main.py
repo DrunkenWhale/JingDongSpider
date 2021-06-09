@@ -60,9 +60,18 @@ def main():
     conn.close()
 
 
+def getDatabaseName(name):
+    string = requests.get("http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=%" + name).text.strip()
+    word_after_change = json.loads(string)["translateResult"][0][0]["tgt"].strip().title().replace(" ", "")
+    for i in word_after_change:
+        if not i.isalpha():
+            word_after_change = word_after_change.replace(i, "")
+    return word_after_change
+
+
 if __name__ == "__main__":
     page, commodity = filter_input()
-    conn = sqlite3.connect(commodity + "CommodityData.db")
+    conn = sqlite3.connect(getDatabaseName(commodity) + "CommodityData.db")
     cursor = conn.cursor()
     primary_key = 1
     main()

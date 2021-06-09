@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 
 
 def HtmlFilter(res):
+    global commodities_list
     final_data_list = []
     price_list = []
     name_list = []
