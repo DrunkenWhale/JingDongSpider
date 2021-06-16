@@ -174,7 +174,7 @@ if __name__ == "__main__":
     for commodity in saler_list:
         page = 30
         # page, commodity = filter_input()
-        conn = sqlite3.connect(getDatabaseName(commodity) + "CommodityData.db")
+        conn = sqlite3.connect("db/"+getDatabaseName(commodity) + "CommodityData.db")
         cursor = conn.cursor()
         main()
         write_to_sqlite(conn, cursor)
